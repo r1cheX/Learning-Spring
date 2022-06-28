@@ -17,9 +17,19 @@ import com.ingenieriaweb.springboot.form.app.models.domain.Usuario;
 @Controller
 public class FormController {
 
+//	@GetMapping("/form")
+//	public String form(Model model) {
+//		Usuario usuario = new Usuario();
+//		model.addAttribute("titulo","Formulario de usuarios");
+//		model.addAttribute("usuario",usuario);
+//		return "form";
+//	}
+	
 	@GetMapping("/form")
 	public String form(Model model) {
 		Usuario usuario = new Usuario();
+		usuario.setNombre("Richard");
+		usuario.setApellido("Braul");
 		model.addAttribute("titulo","Formulario de usuarios");
 		model.addAttribute("usuario",usuario);
 		return "form";
