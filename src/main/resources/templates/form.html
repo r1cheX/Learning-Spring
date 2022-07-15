@@ -1,91 +1,129 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<title th:text="${titulo}">Insert title here</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8"/>
+    <title th:text="${titulo}"></title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/vendor/aos/aos.css}" rel="stylesheet">
+    <link th:href="@{/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Spring Boot</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/listar}">Empleados</a></li>
-			</ul>
-		</div>
-	</nav>
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <a th:href="@{/}" class="logo d-flex align-items-center me-auto me-lg-0">
+            <h1>Richard Braul<span>.</span></h1>
+        </a>
+        <nav class="navbar">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/listar}">Empleados</a></li>
+                <li><a href="#">Área de Trabajo</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<!-- End Header -->
 
-	<div class="container">
-		<h1 th:text="${titulo}"
-			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
-		<div th:object="${empleado}" th:remove="tag">
-			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-			</ul>
-		</div>
-		<form th:action="@{/form}" th:object="${empleado}" method="post">
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Apellidos</label>
-				<div class="col-sm-6">
-					<input type="text" th:field="*{apellidos}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Nombres</label>
-				<div class="col-sm-6">
-					<input type="text" th:field="*{nombres}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></small>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Área de Trabajo</label>
-				<div class="col-sm-6">
-					<input type="text" th:field="*{areatrabajo}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('areatrabajo')}"
-						th:errors="*{areatrabajo}"></small>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Sueldo</label>
-				<div class="col-sm-6">
-					<input type="number" th:field="*{sueldo}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('sueldo')}" th:errors="*{sueldo}"></small>
-				</div>
-			</div>
+<section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+        <div class="row justify-content-between gy-5">
+            <h2 th:text="${titulo}"
+                class="text-secondary border border-primary border-top-0 border-left-0 border-right-0">
+            </h2>
+            <div th:object="${empleado}" th:remove="tag">
+                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                </ul>
+            </div>
+            <form th:action="@{/form}" th:object="${empleado}" method="post">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Apellidos</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{apellidos}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nombres</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{nombres}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Área de Trabajo</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{areatrabajo}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('areatrabajo')}"
+                            th:errors="*{areatrabajo}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Sueldo</label>
+                    <div class="col-sm-6">
+                        <input type="number" th:field="*{sueldo}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('sueldo')}" th:errors="*{sueldo}"></small>
+                    </div>
+                </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Fecha de Ingreso</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" th:field="*{fechaingreso}"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('fechaingreso')}"
-						th:errors="*{fechaingreso}"></small>
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-sm-6">
-					<input type="submit" value="Crear Empleado" class="btn btn-primary" />
-				</div>
-			</div>
-		</form>
-	</div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Fecha de Ingreso</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" th:field="*{fechaingreso}"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('fechaingreso')}"
+                            th:errors="*{fechaingreso}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Crear Empleado" class="btn btn-outline-dark btn-lg"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section><!-- End Hero Section -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Vendor JS Files-->
+<script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/vendor/aos/aos.js"></script>
+<script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="static/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File-->
+<script src="static/js/main.js"></script>
 </body>
 </html>
+
+

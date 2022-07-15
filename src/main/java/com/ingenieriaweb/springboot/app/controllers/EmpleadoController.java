@@ -24,6 +24,12 @@ public class EmpleadoController {
 	@Autowired
 	private IEmpleadoDao empleadoDao;
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String welcome(Model model) {
+		model.addAttribute("titulo", "Bienvenido");
+		return "welcome";
+	}
+
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de Empleados");
@@ -33,7 +39,6 @@ public class EmpleadoController {
 
 	@RequestMapping(value = "/form")
 	public String crear(Map<String, Object> model) {
-
 		Empleado empleado = new Empleado();
 		model.put("empleado", empleado);
 		model.put("titulo", "Formulario de Empleados");

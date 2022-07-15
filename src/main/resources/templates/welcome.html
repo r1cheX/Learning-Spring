@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${titulo}"></title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/vendor/aos/aos.css}" rel="stylesheet">
+    <link th:href="@{/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+    <link th:href="@{/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/card.css}" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+        <a th:href="@{/}" class="logo d-flex align-items-center me-auto me-lg-0">
+            <h1>Richard Braul<span>.</span></h1>
+        </a>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/listar}">Empleados</a></li>
+                <li><a href="#">Área de Trabajo</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<!-- End Header -->
+
+<section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+        <div class="row justify-content-between gy-5">
+            <h2
+                    class="text-secondary border border-primary border-top-0 border-left-0 border-right-0"
+                    th:text="${titulo}">
+            </h2>
+            <div class="card testimonial-card mt-2 mb-3 col-6">
+                <div class="card-up aqua-gradient"></div>
+                <div class="avatar mx-auto white">
+                    <img src="../img/empleado.png"
+                         class="rounded-circle img-fluid"
+                         alt="man avatar">
+                </div>
+                <div class="card-body text-center">
+                    <a th:href="@{/listar}">
+                        <h4 class="card-title font-weight-bold">Empleados</h4>
+                    </a>
+                    <hr>
+                    <p><i class="fas fa-quote-left"></i>Mantenedor de colaboradores del trabajo de Ingeniería Web</p>
+                </div>
+            </div>
+            <div class="card testimonial-card mt-2 mb-3 col-6">
+                <div class="card-up aqua-gradient"></div>
+                <div class="avatar mx-auto white">
+                    <img src="../img/area.jpg"
+                         class="rounded-circle img-fluid"
+                         alt="man avatar">
+                </div>
+                <div class="card-body text-center">
+                    <a th:href="@{/listar}">
+                        <h4 class="card-title font-weight-bold">Área de trabajo</h4>
+                    </a>
+                    <hr>
+                    <p><i class="fas fa-quote-left"></i>Mantenedor de áreas del trabajo de Ingeniería Web</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><!-- End Hero Section -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Vendor JS Files-->
+<script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/vendor/aos/aos.js"></script>
+<script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="static/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File-->
+<script src="static/js/main.js"></script>
+</body>
+</html>
