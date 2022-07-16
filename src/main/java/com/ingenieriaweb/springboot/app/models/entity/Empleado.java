@@ -3,14 +3,7 @@ package com.ingenieriaweb.springboot.app.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -30,9 +23,6 @@ public class Empleado implements Serializable {
     @NotEmpty
     private String nombres;
 
-    @NotEmpty
-    private String areatrabajo;
-
     private Double sueldo;
 
     @NotNull
@@ -40,6 +30,18 @@ public class Empleado implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaingreso;
+
+    @ManyToOne
+    @JoinColumn(name = "idArea")
+    private Area area;
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
 
     public Long getId() {
         return id;
@@ -63,15 +65,6 @@ public class Empleado implements Serializable {
 
     public void setNombres(String nombres) {
         this.nombres = nombres;
-    }
-
-
-    public String getAreatrabajo() {
-        return areatrabajo;
-    }
-
-    public void setAreatrabajo(String areatrabajo) {
-        this.areatrabajo = areatrabajo;
     }
 
     public Double getSueldo() {

@@ -19,7 +19,6 @@
 
     <!-- Template Main CSS File -->
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/card.css}" rel="stylesheet">
 
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -49,37 +48,34 @@
                     class="text-secondary border border-primary border-top-0 border-left-0 border-right-0"
                     th:text="${titulo}">
             </h2>
-            <div class="card testimonial-card mt-2 mb-3 col-6">
-                <div class="card-up aqua-gradient"></div>
-                <div class="avatar mx-auto white">
-                    <img src="../img/empleado.png"
-                         class="rounded-circle img-fluid"
-                         alt="man avatar">
-                </div>
-                <div class="card-body text-center">
-                    <a th:href="@{/empleado/listar}">
-                        <h4 class="card-title font-weight-bold">Empleados</h4>
-                    </a>
-                    <hr>
-                    <p><i class="fas fa-quote-left"></i>Mantenedor de colaboradores del trabajo de Ingeniería Web</p>
-                </div>
-            </div>
-            <div class="card testimonial-card mt-2 mb-3 col-6">
-                <div class="card-up aqua-gradient"></div>
-                <div class="avatar mx-auto white">
-                    <img src="../img/area.jpg"
-                         class="rounded-circle img-fluid"
-                         alt="man avatar">
-                </div>
-                <div class="card-body text-center">
-                    <a th:href="@{/area/listar}">
-                        <h4 class="card-title font-weight-bold">Área de trabajo</h4>
-                    </a>
-                    <hr>
-                    <p><i class="fas fa-quote-left"></i>Mantenedor de áreas del trabajo de Ingeniería Web</p>
-                </div>
-            </div>
-
+            <p>
+                <a th:href="@{/area/form}" class="btn btn-outline-dark btn-lg">Crear Área</a>
+            </p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Ver</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="area: ${areas}">
+                    <td th:text="${area.id}"></td>
+                    <td th:text="${area.nombre}"></td>
+                    <td th:text="${area.fecha}"></td>
+                    <td><a class="btn btn-primary btn-xs" th:href="@{/area/form/} + ${area.id}" th:text="'editar'"></a>
+                    </td>
+                    <td><a class="btn btn-danger btn-xs" th:href="@{/area/eliminar/} + ${area.id}" th:text="'eliminar'"
+                           onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
+                    <td><a class="btn btn-success btn-xs" th:href="@{/area/buscarArea/} + ${area.id}"
+                           th:text="'empleados'"></a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </section><!-- End Hero Section -->

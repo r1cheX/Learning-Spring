@@ -30,11 +30,11 @@
         <a th:href="@{/}" class="logo d-flex align-items-center me-auto me-lg-0">
             <h1>Richard Braul<span>.</span></h1>
         </a>
-        <nav  id="navbar" class="navbar">
+        <nav class="navbar">
             <ul>
                 <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/listar}">Empleados</a></li>
-                <li><a href="#">Área de Trabajo</a></li>
+                <li><a th:href="@{/empleado/listar}">Empleados</a></li>
+                <li><a th:href="@{/area/listar}">Área de Trabajo</a></li>
             </ul>
         </nav><!-- .navbar -->
     </div>
@@ -44,42 +44,39 @@
 <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
         <div class="row justify-content-between gy-5">
-            <h2
-                    class="text-secondary border border-primary border-top-0 border-left-0 border-right-0"
-                    th:text="${titulo}">
+            <h2 th:text="${titulo}"
+                class="text-secondary border border-primary border-top-0 border-left-0 border-right-0">
             </h2>
-            <p>
-                <a th:href="@{/form}" class="btn btn-outline-dark btn-lg">Crear empleados</a>
-            </p>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Apellidos</th>
-                    <th>Nombres</th>
-                    <th>Área de Trabajo</th>
-                    <th>Sueldo</th>
-                    <th>Fecha de Ingreso</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="empleado: ${empleados}">
-                    <td th:text="${empleado.id}"></td>
-                    <td th:text="${empleado.apellidos}"></td>
-                    <td th:text="${empleado.nombres}"></td>
-                    <td th:text="${empleado.areatrabajo}"></td>
-                    <td th:text="${empleado.sueldo}"></td>
-                    <td th:text="${empleado.fechaingreso}"></td>
-                    <td><a class="btn btn-primary btn-xs"
-                           th:href="@{/form/} + ${empleado.id}" th:text="'editar'"></a></td>
-                    <td><a class="btn btn-danger btn-xs"
-                           th:href="@{/eliminar/} + ${empleado.id}" th:text="'eliminar'"
-                           onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
-                </tr>
-                </tbody>
-            </table>
+            <div th:object="${area}" th:remove="tag">
+                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                </ul>
+            </div>
+            <form th:action="@{/area/form}" th:object="${area}" method="post">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{nombre}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Fecha</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" th:field="*{fecha}"
+                               th:errorclass="'form-control alert-danger'"/> <small
+                            class="form-text text-danger"
+                            th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Crear Área" class="btn btn-outline-dark btn-lg"/>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </section><!-- End Hero Section -->
@@ -98,3 +95,5 @@
 <script src="static/js/main.js"></script>
 </body>
 </html>
+
+
